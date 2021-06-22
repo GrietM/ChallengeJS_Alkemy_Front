@@ -1,7 +1,7 @@
 import { Button, Space } from 'antd'
 import React from 'react'
 import Balance from '../Balance/Balance'
-import ExpensesTable from '../ExpensesTable/ExpensesTable'
+
 import LastMoves2 from '../LastMoves/LastMoves2'
 
 const Home = () => {

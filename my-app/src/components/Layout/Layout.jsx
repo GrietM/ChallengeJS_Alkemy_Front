@@ -13,14 +13,10 @@ import {
     StrikethroughOutlined ,
     PlusCircleOutlined
   } from '@ant-design/icons';
-import LogOut from '../LogOut/LogOut';
 import Expenses from '../Pages/Expenses';
 import Incomes from '../Pages/Incomes';
-import Login from '../Login/Login'
-import logo from '../../images/logo.png'
 import Balance from '../../components/Balance/Balance'
 import Home from '../Pages/Home';
-import OperationsTable from '../OperationsTable/OperationsTable';
 import Operations from '../Pages/Operations';
 
 const { Header, Content, Footer } = Layout;
@@ -31,9 +27,6 @@ const MyLayout = () =>{
         <Header>
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
-            <Menu.Item className="item" key="0" icon={<StrikethroughOutlined/>}>
-                <NavLink to="/"  style= {{fontWeight:'bolder'}} onClick={()=>{alert('hello!')}}/>       
-            </Menu.Item>
             <Menu.Item className="item" key="1" icon={<HomeOutlined />}>
                 <NavLink to="/Home"  style= {{fontWeight:'bolder'}}>
                     Home
@@ -54,16 +47,12 @@ const MyLayout = () =>{
                     Add
                 </NavLink>
             </Menu.Item>
-            <Menu.Item>
-                <LogOut />
-            </Menu.Item>
         </Menu>
         </Header>
         <Content style={{ padding: '0 50px' }}>
         <div className="site-layout-content">
            
             <Routes>
-            <Route exact path="/" element= {<Login/>} />  
             <Route exact path="/Home" element= {<Home/>} />      
             <Route exact path="/Incomes" element= {<Incomes/>} />   
             <Route exact path= "/Expenses" element = {<Expenses/>}/>   
