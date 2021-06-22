@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Modal , Button, Form , Input, message, Radio, Col , Row, DatePicker, Select} from 'antd'
 import axios from 'axios'
+import Password from 'antd/lib/input/Password'
+//import './UserModal.css'
 
 const { Item } = Form
 const { Group } = Radio
 const MyModal = ({operationVisible, setOperationVisible , getAllUsers}) => {
-    
+    //console.log('EDIT modal - userEDITtails =========', usereditdetails )
+    //const token = localStorage.getItem('Token')
     const [formedit] = Form.useForm()
    
     const closeOperationModal = ()=>{
@@ -16,10 +19,10 @@ const MyModal = ({operationVisible, setOperationVisible , getAllUsers}) => {
         try{ 
             console.log("por grabar ==", newoperation)
             const response = await axios.post('http://localhost:8080/api/admin/operations/', newoperation)//,{headers: {Authorization: 'Bearer ' + token}});
-            
-            message.success("Se CREO usuario: " + response.data.userName)
+            //console.log("post de usuario-response",response)
+            message.success("Operation succesfully created")
             closeOperationModal()
-           
+           // getAllUsers()
         } catch (error) {
             message.error("Fallo la Grabacion del usuario - Error:"  + error)
             throw error
@@ -33,9 +36,27 @@ const MyModal = ({operationVisible, setOperationVisible , getAllUsers}) => {
         message.error("ERROR en los datos. No cumplen las validaciones que se muestran en rojo")
     } 
 
+    /* const [value, setValue] = useState("admin")
+    const onChange =e=>{
+        console.log('value', value)
+        console.log('e.target.value', e.target.value)
+        setValue(e.target.value)
+    }
+ */
     const handleCancel = ()=>{
         closeOperationModal()
     }
+/* 
+    useEffect(()=>{
+        //console.log("EDITMODAL-useEffect de seteo")
+        formedit.setFieldsValue ({
+                firstName : '',
+                lastName : '',
+                userName :'x',
+                type : '',
+                email : '',
+            password :'' })
+    }) */
 
     const formview={
         labelCol:{ span:4}, 
@@ -62,7 +83,16 @@ const MyModal = ({operationVisible, setOperationVisible , getAllUsers}) => {
             form={formedit}
             {...formview}
         >
-        <Item label="Concept" 
+           {/*   <Item label="Tipo" 
+                name="type" 
+                rules={[{ required: true, message: 'Seleccione el TIPO de usuario' }]}
+            >
+                <Group noStyle onChange={onChange} value={value} name="radioButton" >
+                    <Radio value={"admin"}>Administrador</Radio>
+                    <Radio value={"visitor"}>Visita</Radio>
+                </Group>
+            </Item> */}
+            <Item label="Concept" 
                 name="concept" 
                 rules={[{ required: true, message: 'Ingrese el NOMBRE (max:20)' , max:20 }]}
                 allowClear

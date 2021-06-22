@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+//import ExpensesTable from '../ExpensesTable/ExpensesTable'
+import OperationsTable from '../OperationsTable/OperationsTable'
 import { Table , Button, message} from 'antd'
 import axios from 'axios'
 import {DeleteOutlined , EditOutlined, PlusCircleOutlined} from '@ant-design/icons'
