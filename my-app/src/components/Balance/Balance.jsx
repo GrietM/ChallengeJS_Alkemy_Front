@@ -17,7 +17,7 @@ const Balance = () => {
     <Descriptions.Item label="UserName" style= {{fontWeight:'bolder'}}> Marce Griet</Descriptions.Item>
     <Descriptions.Item label="Total Incomes">{totalIncomes} $</Descriptions.Item>
     <Descriptions.Item label="Total Expenses">{totalExpenses} $</Descriptions.Item>
-    <Descriptions.Item label="Balance at"> Date </Descriptions.Item>
+    <Descriptions.Item label="Balance at"> Date: </Descriptions.Item>
     <Descriptions.Item label="Total"> {balance} $ </Descriptions.Item>
   </Descriptions>
     )
