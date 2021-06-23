@@ -11,7 +11,8 @@ import {
     DollarOutlined,
     WalletOutlined,
     StrikethroughOutlined ,
-    PlusCircleOutlined
+    PlusCircleOutlined,
+    UserOutlined
   } from '@ant-design/icons';
 import LogOut from '../LogOut/LogOut';
 import Expenses from '../Pages/Expenses';
@@ -22,8 +23,21 @@ import Balance from '../../components/Balance/Balance'
 import Home from '../Pages/Home';
 import OperationsTable from '../OperationsTable/OperationsTable';
 import Operations from '../Pages/Operations';
+const jwt = require ('jsonwebtoken');
 
 const { Header, Content, Footer } = Layout;
+
+const token = localStorage.getItem('Token')
+
+const loginLegend = () => {
+    if (token){
+        let decoded = jwt.verify(token, 'AlkemyChallengeJS')
+        return decoded.userName}
+    else {
+        return ("Login")
+    }
+    }
+
 
 const MyLayout = () =>{
     return (
@@ -31,8 +45,10 @@ const MyLayout = () =>{
         <Header>
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
-            <Menu.Item className="item" key="0" icon={<StrikethroughOutlined/>}>
-                <NavLink to="/"  style= {{fontWeight:'bolder'}} onClick={()=>{alert('hello!')}}/>       
+            <Menu.Item className="item" key="0" icon={<UserOutlined/>}>
+                <NavLink to="/"  style= {{fontWeight:'bolder'}} onClick={()=>{alert('hello!')}}>
+                {loginLegend()}
+                </NavLink>          
             </Menu.Item>
             <Menu.Item className="item" key="1" icon={<HomeOutlined />}>
                 <NavLink to="/Home"  style= {{fontWeight:'bolder'}}>
