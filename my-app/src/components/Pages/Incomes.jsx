@@ -9,14 +9,14 @@ import PostModal from '../Modals/PostModal'
 const Incomes = () => {
     const [incomes, setIncomes] = useState([])
     const [isModalVisible, setIsModalVisible] = useState(false);
+    
+    const token = localStorage.getItem('Token') 
 
     const getAllIncomes = async () => {
         
         try{
-          const resp = await axios.get('http://localhost:8080/api/admin/operationsbytype',{params: {
-            operationType: 'income'    }
-        })
-        //,{headers: {Authorization: 'Bearer ' + token}});
+          const resp = await axios.get('http://localhost:8080/api/admin/operationsbytype?operationType=income'
+        ,{headers: {Authorization: 'Bearer ' + token}});
           setIncomes(resp.data)  
         }
         catch(error){

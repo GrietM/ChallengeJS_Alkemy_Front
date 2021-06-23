@@ -57,6 +57,7 @@ const MyLayout = () =>{
             <Menu.Item>
                 <LogOut />
             </Menu.Item>
+            
         </Menu>
         </Header>
         <Content style={{ padding: '0 50px' }}>

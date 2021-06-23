@@ -8,7 +8,7 @@ const { Item } = Form
 const { Group } = Radio
 const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations}) => {
     
-    //const token = localStorage.getItem('Token')
+    const token = localStorage.getItem('Token')
     const [formedit] = Form.useForm()
    
     const closeOperationModal = ()=>{
@@ -18,7 +18,7 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
     const saveModal = async (newoperation)=>{
         try{ 
             console.log("por grabar ==", newoperation)
-            const response = await axios.post('http://localhost:8080/api/admin/operations/', newoperation)//,{headers: {Authorization: 'Bearer ' + token}});
+            const response = await axios.post('http://localhost:8080/api/admin/operations/', newoperation,{headers: {Authorization: 'Bearer ' + token}});
             //console.log("post de usuario-response",response)
             message.success("Operation succesfully created")
             closeOperationModal()
@@ -86,14 +86,14 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
             <Item label="Concept" 
                 name="concept" 
                 rules={[{ required: true, message: 'Ingrese el NOMBRE (max:20)' , max:20 }]}
-                allowClear
+                
             >
                 <Input/>
             </Item>
             <Item label="Amount" 
                 name="amount" 
                 rules={[{ required: true, message: 'Ingrese el APELLIDO (max:20)' , max:20}]}
-                allowClear
+                
             >
                 <Input  />
             </Item>

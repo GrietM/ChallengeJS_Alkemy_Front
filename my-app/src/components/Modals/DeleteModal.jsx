@@ -7,7 +7,7 @@ const ConfirmModal = ({isModalVisible ,setIsModalVisible ,  getAllExpenses, getA
   const operationid =  'http://localhost:8080/api/admin/operations/' + operationDetails._id
   
  // console.log('ConfirmModal-bookdetails -2 ',userid)
- //const token = localStorage.getItem('Token') 
+ const token = localStorage.getItem('Token') 
 
   const handleCancel = () => {
     setIsModalVisible(false)
@@ -16,7 +16,7 @@ const ConfirmModal = ({isModalVisible ,setIsModalVisible ,  getAllExpenses, getA
   const handleOnDelete = async (hhh) => {
     //console.log('ModalConfirm-3 ',hhh)
     try{
-      const response = await axios.delete(operationid)//,{headers: {Authorization: 'Bearer ' + token}});
+      const response = await axios.delete(operationid,{headers: {Authorization: 'Bearer ' + token}});
       //validar que salio ok el delete para refrescar la tabla
       //console.log('despues de borrar',response)
       message.success('Operation succesfully deleted')

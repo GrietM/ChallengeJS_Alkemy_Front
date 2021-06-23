@@ -10,21 +10,27 @@ const Expenses = () => {
     const [expenses, setExpenses] = useState([])
     const [isModalVisible, setIsModalVisible] = useState(false);
 
+    const token = localStorage.getItem('Token') 
+
     const getAllExpenses = async () => {
         
         try{
-          const resp = await axios.get('http://localhost:8080/api/admin/operationsbytype', {
-            params: {
-            operationType: 'expense'    }
-          })
-           setExpenses(resp.data)  
+        
+          console.log('token:', token)
+          const resp = await axios.get('http://localhost:8080/api/admin/operationsbytype?operationType=expense',
+           {headers: {Authorization: 'Bearer ' + token}}
+          )
+          console.log("Llego hasta aca")
+          setExpenses(resp.data)  
         }
         catch(error){
             //localStorage.removeItem('Token')
             //GoToMain()   
             //message.error("Sesión expirada. Inicie sesión nuevamente", 4)
             throw error        
-        }}
+        }
+        
+        }
 
         useEffect(() =>{
             getAllExpenses()

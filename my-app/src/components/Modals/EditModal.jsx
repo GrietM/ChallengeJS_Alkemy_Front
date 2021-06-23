@@ -8,7 +8,7 @@ const { Group } = Radio
 
 const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,getAllIncomes, operationEditDetails, setOperationEditDetails}) => {
     
-    //const token = localStorage.getItem('Token')
+    const token = localStorage.getItem('Token')
     const [formedit] = Form.useForm()
    
     const closeModal = ()=>{
@@ -20,7 +20,7 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
         try{ 
             const sendOperation={...editOperation}
             //console.log("por grabar ==",'http://localhost:8080/api/admin/users/'+ usereditdetails._id)
-            const response = await axios.put('http://localhost:8080/api/admin/operations/'+ operationEditDetails._id , sendOperation);
+            const response = await axios.put('http://localhost:8080/api/admin/operations/'+ operationEditDetails._id , sendOperation, {headers: {Authorization: 'Bearer ' + token}});
             //console.log("put de usuario-response",response)
             message.success("Operation Updated")
             closeModal()

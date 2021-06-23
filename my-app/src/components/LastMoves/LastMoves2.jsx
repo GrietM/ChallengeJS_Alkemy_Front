@@ -13,11 +13,12 @@ const { Column } = Table;
 
 const LastMoves2 = () => {
     const [operations, setOperations] = useState([])
+    const token = localStorage.getItem('Token') 
 
     const getAllOperations = async () => {
         
         try{
-          const resp = await axios.get('http://localhost:8080/api/admin/operations')//,{headers: {Authorization: 'Bearer ' + token}});
+          const resp = await axios.get('http://localhost:8080/api/admin/operations',{headers: {Authorization: 'Bearer ' + token}});
           
           console.log(resp)
           setOperations(resp.data)  

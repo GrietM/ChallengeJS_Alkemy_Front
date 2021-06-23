@@ -37,6 +37,7 @@ const Login = () => {
      try{
      const response = await axios.post('http://localhost:8080/api/admin/users/login/', userObject );
      localStorage.setItem("Token", response.data.token) 
+     console.log("Token generado exitosamente:", response.data.token)
      message.success('Welcome to AcountANT',3,goToHome())
       //readyToRedirect = true
      } catch(err){
