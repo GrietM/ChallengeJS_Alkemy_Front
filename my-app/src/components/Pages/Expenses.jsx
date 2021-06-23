@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import OperationsTable from '../OperationsTable/OperationsTable'
-import { Table , Button, message} from 'antd'
+import { Table } from 'antd'
 import axios from 'axios'
 import {DeleteOutlined , EditOutlined, PlusCircleOutlined} from '@ant-design/icons'
 import DeleteModal from '../Modals/DeleteModal'
 import EditModal from '../Modals/EditModal'
 import PostModal from '../Modals/PostModal'
-
-//import ProductModal from '../../components/Modal/ProductModal'
-//import ModalConfirm from '../../components/Modal/ModalConfirm'
-//import ModalUpDate from '../../components/Modal/ModalUpDate'
-//import GoToMain from '../../components/GoToMain'
-//import './ProductsCrud.css'
 
 const Expenses = () => {
     const [expenses, setExpenses] = useState([])
@@ -39,27 +32,23 @@ const Expenses = () => {
         )
 
         const [operationVisible, setModal] = useState(false)
-
-        const openModal = ()=>{
-            setModal(true)
-        }
-        const [ expensesDetails, setExpensessDetails]  = useState({})
+        const [ operationDetails, setOperationDetails]  = useState({})
 
         const handleOnDelete = (event) => {
             //antes de borrar llamar a un modal que confirme que quiere borrar ese libro
-            setExpensessDetails (event)
+            setOperationDetails (event)
             setIsModalVisible(true)
         } 
 
         const [ isEditModalVisible, setIsEditModalVisible] = useState(false);
-        const [ expensesEditDetails, setExpensesEditDetails]  = useState({})
+        const [ operationEditDetails, setOperationEditDetails]  = useState({})
 
         const handleOnEdit = (row) => {
-            setExpensesEditDetails (row)
+            setOperationEditDetails (row)
             setIsEditModalVisible(true)
         } 
 
-        const { Column } = Table;
+        
 
 const columns =[
     {
@@ -105,14 +94,14 @@ const columns =[
             isModalVisible={isModalVisible} 
             setIsModalVisible={setIsModalVisible} 
             getAllExpenses={getAllExpenses} 
-            expensesDetails={expensesDetails} 
+            operationDetails={operationDetails} 
             />
             <EditModal 
             isEditModalVisible={isEditModalVisible}
             setIsEditModalVisible={setIsEditModalVisible} 
             getAllExpenses={getAllExpenses} 
-            expensesEditDetails={expensesEditDetails} 
-            setExpensesEditDetails={setExpensesEditDetails}
+            operationEditDetails={operationEditDetails} 
+            setOperationEditDetails={setOperationEditDetails}
             />
             <Table columns= {columns} dataSource={expenses}/>
         </div>

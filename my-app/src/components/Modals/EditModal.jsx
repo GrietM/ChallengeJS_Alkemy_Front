@@ -6,33 +6,38 @@ import axios from 'axios'
 const { Item } = Form
 const { Group } = Radio
 
-const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,  expensesEditDetails, setExpensesEditDetails}) => {
+const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,getAllIncomes, operationEditDetails, setOperationEditDetails}) => {
     
     //const token = localStorage.getItem('Token')
     const [formedit] = Form.useForm()
    
     const closeModal = ()=>{
-        setExpensesEditDetails({})
+        setOperationEditDetails({})
         setIsEditModalVisible(false)
     }
  
-    const saveModal = async (editExpense)=>{
+    const saveModal = async (editOperation)=>{
         try{ 
-            const sendExpense={...editExpense}
+            const sendOperation={...editOperation}
             //console.log("por grabar ==",'http://localhost:8080/api/admin/users/'+ usereditdetails._id)
-            const response = await axios.put('http://localhost:8080/api/admin/operations/'+ expensesEditDetails._id , sendExpense);
+            const response = await axios.put('http://localhost:8080/api/admin/operations/'+ operationEditDetails._id , sendOperation);
             //console.log("put de usuario-response",response)
-            message.success("Expense Updated")
+            message.success("Operation Updated")
             closeModal()
-            getAllExpenses()
+            if (operationEditDetails.operationType=='expense'){
+                getAllExpenses()
+                } else{
+                getAllIncomes()
+                }
+            
         } catch (error) {
-            message.error("Failed to Update Expense - Error:"  + error)
+            message.error("Failed to Update Operation - Error:"  + error)
             throw error
         }
     }
     
-    const formSuccess =(editExpense) =>{
-        saveModal(editExpense)
+    const formSuccess =(editOperation) =>{
+        saveModal(editOperation)
     } 
     const formFailed =(error) =>{
         message.error("ERROR. Check warnings in red")
@@ -44,10 +49,10 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,  e
 
     useEffect(()=>{
         //console.log("EDITMODAL-useEffect de seteo")
-        if (typeof expensesEditDetails !== undefined){
+        if (typeof operationEditDetails !== undefined){
             formedit.setFieldsValue ({
-                concept:expensesEditDetails.concept, 
-                amount: expensesEditDetails.amount,
+                concept:operationEditDetails.concept, 
+                amount: operationEditDetails.amount,
                 //date : expensesEditDetails.date,
                 //No se puede editar el tipo de operacion
                 }
@@ -59,13 +64,13 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,  e
                 //date :''
                 })
         }
-    } , [formedit,expensesEditDetails])
+    } , [formedit,operationEditDetails])
 
     const dateFormat = 'YYYY/MM/DD';
     
     return (
     <div>
-      <Modal title='Expenses Editing' 
+      <Modal title='OPeration Editing' 
         visible={isEditModalVisible}
         width={700}
         footer={null}
@@ -82,13 +87,13 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,  e
         >
             <Item label="Concept" 
                 name="concept" 
-                rules={[{ required: true, message: 'Insert Expense Concept'}]}
+                rules={[{ required: true, message: 'Insert Operation Concept'}]}
             >
                 <Input />
             </Item>
             <Item label="Amount" 
                 name="amount" 
-                rules={[{ required: true, message: 'Insert Expense Amount' }]}
+                rules={[{ required: true, message: 'Insert Operation Amount' }]}
             >
                 <Input />
             </Item>         
