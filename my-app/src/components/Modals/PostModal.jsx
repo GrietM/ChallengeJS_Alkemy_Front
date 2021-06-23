@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Modal , Button, Form , Input, message, Radio, Col , Row, DatePicker, Select} from 'antd'
 import axios from 'axios'
 import Password from 'antd/lib/input/Password'
-//import './UserModal.css'
+
 
 const { Item } = Form
 const { Group } = Radio
-const MyModal = ({operationVisible, setOperationVisible , getAllUsers}) => {
-    //console.log('EDIT modal - userEDITtails =========', usereditdetails )
+const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations}) => {
+    
     //const token = localStorage.getItem('Token')
     const [formedit] = Form.useForm()
    
@@ -22,7 +22,7 @@ const MyModal = ({operationVisible, setOperationVisible , getAllUsers}) => {
             //console.log("post de usuario-response",response)
             message.success("Operation succesfully created")
             closeOperationModal()
-           // getAllUsers()
+           // getAllOperations()
         } catch (error) {
             message.error("Fallo la Grabacion del usuario - Error:"  + error)
             throw error
@@ -46,17 +46,7 @@ const MyModal = ({operationVisible, setOperationVisible , getAllUsers}) => {
     const handleCancel = ()=>{
         closeOperationModal()
     }
-/* 
-    useEffect(()=>{
-        //console.log("EDITMODAL-useEffect de seteo")
-        formedit.setFieldsValue ({
-                firstName : '',
-                lastName : '',
-                userName :'x',
-                type : '',
-                email : '',
-            password :'' })
-    }) */
+
 
     const formview={
         labelCol:{ span:4}, 
@@ -72,6 +62,7 @@ const MyModal = ({operationVisible, setOperationVisible , getAllUsers}) => {
         width={700}
         footer={null}
         onCancel={closeOperationModal}
+
       >
         <Row>
             <Col xs={4} sm={4} md={2} lg={2}></Col>
@@ -129,4 +120,4 @@ const MyModal = ({operationVisible, setOperationVisible , getAllUsers}) => {
 )
 }
 
-export default MyModal;
+export default MyPostModal;

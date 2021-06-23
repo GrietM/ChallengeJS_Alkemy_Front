@@ -10,7 +10,8 @@ import { Radio, Button, message, Table } from 'antd';
 //import OperationsForm from '../Form/Form';
 import axios from 'axios'
 import {DeleteOutlined , EditOutlined , PlusCircleOutlined} from '@ant-design/icons';
-import MyModal from '../Modals/Modal'
+import MyPostModal from '../Modals/PostModal'
+
 //import ConfirmModal from '../Modal/ConfirmModal'
 //import EditModal from '../Modal/EditModal'
 //import GoToMain from '../GoToMain'
@@ -32,17 +33,12 @@ const Operations = () => {
         <div>
         <br></br>
         <Button type="primary" icon={<PlusCircleOutlined/>} onClick={ openOperationModal} >New Operation</Button>
-        <MyModal 
+        <MyPostModal 
         operationVisible={operationVisible} 
         setOperationVisible={setOperationVisible} 
         //getAllUsers={getAllUsers} 
       />
-        <br></br>
-        <br></br>
-        <Radio.Group name="radiogroup" defaultValue={1}>
-            <Radio value={1}>Income</Radio>
-            <Radio value={2}>Expense</Radio>
-        </Radio.Group>
+        
         </div>
     )}
 
