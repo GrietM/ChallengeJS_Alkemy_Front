@@ -41,7 +41,7 @@ const Login = () => {
      message.success('Welcome to AcountANT',3,goToHome())
       //readyToRedirect = true
      } catch(err){
-       message.error('Error de inicio de sesión. Verifique usuario y contraseña ingresados',5)
+       message.error('Login error. Check username and password entered',5)
      }
     /*  finally{
        if (readyToRedirect === true){

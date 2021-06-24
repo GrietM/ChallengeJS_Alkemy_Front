@@ -7,7 +7,7 @@ import {DeleteOutlined , EditOutlined, PlusCircleOutlined} from '@ant-design/ico
 //import ProductModal from '../../components/Modal/ProductModal'
 //import ModalConfirm from '../../components/Modal/ModalConfirm'
 //import ModalUpDate from '../../components/Modal/ModalUpDate'
-//import GoToMain from '../../components/GoToMain'
+import GoToMain from '../../components/GoToMain'
 //import './ProductsCrud.css'
 const { Column } = Table;
 
@@ -24,9 +24,8 @@ const LastMoves2 = () => {
           setOperations(resp.data)  
         }
         catch(error){
-            //localStorage.removeItem('Token')
-            //GoToMain()   
-            //message.error("Sesión expirada. Inicie sesión nuevamente", 4)
+            localStorage.removeItem('Token') 
+            message.error("Session expired. Please Login to continue operating", 4, GoToMain)
             throw error        
         }}
 

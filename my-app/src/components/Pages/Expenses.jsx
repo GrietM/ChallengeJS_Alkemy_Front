@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Table } from 'antd'
+import { Table, message } from 'antd'
 import axios from 'axios'
 import {DeleteOutlined , EditOutlined, PlusCircleOutlined} from '@ant-design/icons'
 import DeleteModal from '../Modals/DeleteModal'
 import EditModal from '../Modals/EditModal'
 import PostModal from '../Modals/PostModal'
+import GoToMain from '../GoToMain'
 
 const Expenses = () => {
     const [expenses, setExpenses] = useState([])
@@ -13,23 +14,24 @@ const Expenses = () => {
     const token = localStorage.getItem('Token') 
 
     const getAllExpenses = async () => {
-        
+        if (token){
         try{
         
           console.log('token:', token)
           const resp = await axios.get('http://localhost:8080/api/admin/operationsbytype?operationType=expense',
            {headers: {Authorization: 'Bearer ' + token}}
           )
-          console.log("Llego hasta aca")
           setExpenses(resp.data)  
         }
         catch(error){
-            //localStorage.removeItem('Token')
-            //GoToMain()   
-            //message.error("Sesión expirada. Inicie sesión nuevamente", 4)
+            localStorage.removeItem('Token') 
+            message.error("Session expired. Please Login to continue operating", 4, GoToMain)
             throw error        
         }
-        
+        }   
+        else {
+            message.error('Please Login to access this information. Redirecting to Login Page...', GoToMain)
+          }
         }
 
         useEffect(() =>{
@@ -89,6 +91,7 @@ const columns =[
           </>
       },
 ]
+    if (token){
     return(
         <div>
             <PostModal 
@@ -111,7 +114,10 @@ const columns =[
             />
             <Table columns= {columns} dataSource={expenses}/>
         </div>
-        )
+        )}
+        else {
+            return null
+        }
     }
     
     

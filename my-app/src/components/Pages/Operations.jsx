@@ -11,24 +11,26 @@ import { Radio, Button, message, Table } from 'antd';
 import axios from 'axios'
 import {DeleteOutlined , EditOutlined , PlusCircleOutlined} from '@ant-design/icons';
 import MyPostModal from '../Modals/PostModal'
+import GoToMain from '../GoToMain'
 
 //import ConfirmModal from '../Modal/ConfirmModal'
 //import EditModal from '../Modal/EditModal'
-//import GoToMain from '../GoToMain'
+
 
 
 const Operations = () => {
   
     //const [users, setUsers] = useState([])
     //const [isModalVisible, setIsModalVisible] = useState(false);
-        
+    const token = localStorage.getItem('Token') 
+
     const [operationVisible, setOperationVisible] = useState(false)
     
     const openOperationModal = ()=>{
         setOperationVisible(true)
     }
     //const [ userdetails, setUsersdetails]  = useState({})
-
+    if (token){
     return(
         <div>
         <br></br>
@@ -41,5 +43,9 @@ const Operations = () => {
         
         </div>
     )}
+    else {
+        message.error('Please Login to access this information. Redirecting to Login Page...', GoToMain)
+        return null
+    }}
 
 export default Operations

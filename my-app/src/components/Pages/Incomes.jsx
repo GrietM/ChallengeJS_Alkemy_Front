@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Table } from 'antd'
+import { Table, message } from 'antd'
 import axios from 'axios'
 import {DeleteOutlined , EditOutlined, PlusCircleOutlined} from '@ant-design/icons'
 import DeleteModal from '../Modals/DeleteModal'
 import EditModal from '../Modals/EditModal'
 import PostModal from '../Modals/PostModal'
+import GoToMain from '../GoToMain'
 
 const Incomes = () => {
     const [incomes, setIncomes] = useState([])
@@ -13,18 +14,21 @@ const Incomes = () => {
     const token = localStorage.getItem('Token') 
 
     const getAllIncomes = async () => {
-        
+        if(token){
         try{
           const resp = await axios.get('http://localhost:8080/api/admin/operationsbytype?operationType=income'
         ,{headers: {Authorization: 'Bearer ' + token}});
           setIncomes(resp.data)  
         }
         catch(error){
-            //localStorage.removeItem('Token')
-            //GoToMain()   
-            //message.error("Sesión expirada. Inicie sesión nuevamente", 4)
+            localStorage.removeItem('Token') 
+            message.error("Session expired. Please Login to continue operating", 4, GoToMain)
             throw error        
         }}
+        else {
+            message.error('Please Login to access this information. Redirecting to Login Page...', GoToMain)
+          }
+        }
 
         useEffect(() =>{
             getAllIncomes()
@@ -80,6 +84,7 @@ const Incomes = () => {
                   </>
               },
         ]
+    if (token){   
     return(
         <div>
         <PostModal 
@@ -102,7 +107,10 @@ const Incomes = () => {
         />
            <Table columns= {columns} dataSource={incomes}/>
         </div>
-        )
+        )}
+        else {
+            return null
+        }
     }
     
     
