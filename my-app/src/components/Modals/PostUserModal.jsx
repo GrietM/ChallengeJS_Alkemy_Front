@@ -32,7 +32,7 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
         saveModal(newUser)
     } 
     const formFailed =(error) =>{
-        message.error("ERROR. Check fields requirements shown in red")
+        message.error("Failed to create operation. Clear your entries and check fields requirements shown in red")
     } 
 
     const handleCancel = ()=>{

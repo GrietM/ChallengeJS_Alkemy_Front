@@ -31,7 +31,7 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
                 }
             
         } catch (error) {
-            message.error("Failed to Update Operation - Error:"  + error)
+            message.error("Failed to Update Operation. Clear your entries and check fields requirements shown in red")
             throw error
         }
     }
@@ -40,7 +40,7 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
         saveModal(editOperation)
     } 
     const formFailed =(error) =>{
-        message.error("ERROR. Check warnings in red")
+        message.error("ERROR. Failed to Update Operation. Clear your entries and check fields requirements shown in red")
     } 
 
     const onCancel = ()=>{
@@ -67,6 +67,7 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
     } , [formedit,operationEditDetails])
 
     const dateFormat = 'YYYY/MM/DD';
+    const customFormat = value => `custom format: ${value.format(dateFormat)}`;
     
     return (
     <div>
@@ -87,18 +88,18 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
         >
             <Item label="Concept" 
                 name="concept" 
-                rules={[{ required: true, message: 'Insert Operation Concept'}]}
+                rules={[{ required: true, message: 'This field is required. Insert Operation Concept'}]}
             >
                 <Input />
             </Item>
             <Item label="Amount" 
                 name="amount" 
-                rules={[{ required: true, message: 'Insert Operation Amount' }]}
+                rules={[{ required: true, message: 'This field is required. Only numeric values accepted. ' }]}
             >
                 <Input />
             </Item>         
             <Item label="Date" name="date">
-                <DatePicker format={dateFormat}/>
+                <DatePicker format={customFormat} />
             </Item>
             <p style={{textAlign:'center'}}>Operation type cannot be modified</p>
             <Item style={{textAlign:'center'}}>

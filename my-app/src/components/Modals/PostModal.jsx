@@ -24,7 +24,7 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
             closeOperationModal()
            // getAllOperations()
         } catch (error) {
-            message.error("Fallo la Grabacion del usuario - Error:"  + error)
+            message.error("Failed to create operation. Clear your entries and check fields requirements shown in red")
             throw error
         }
     }
@@ -33,7 +33,7 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
         saveModal(newoperation)
     } 
     const formFailed =(error) =>{
-        message.error("ERROR en los datos. No cumplen las validaciones que se muestran en rojo")
+        message.error("Failed to create operation. Clear your entries and check fields requirements shown in red")
     } 
 
     const handleCancel = ()=>{
@@ -69,14 +69,14 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
         >
              <Item label="Concept" 
                 name="concept" 
-                rules={[{ required: true, message: 'Ingrese el NOMBRE (max:20)' , max:20 }]}
+                rules={[{ required: true, message: 'Insert Concept (max:20)' , max:20 }]}
                 
             >
                 <Input/>
             </Item>
             <Item label="Amount" 
                 name="amount" 
-                rules={[{ required: true, message: 'Ingrese el APELLIDO (max:20)' , max:20}]}
+                rules={[{ required: true, message: 'Insert amount (only numeric values accepted)'}]}
                 
             >
                 <Input  />

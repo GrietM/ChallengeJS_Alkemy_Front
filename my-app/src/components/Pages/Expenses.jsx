@@ -43,7 +43,6 @@ const Expenses = () => {
         const [ operationDetails, setOperationDetails]  = useState({})
 
         const handleOnDelete = (event) => {
-            //antes de borrar llamar a un modal que confirme que quiere borrar ese libro
             setOperationDetails (event)
             setIsModalVisible(true)
         } 
