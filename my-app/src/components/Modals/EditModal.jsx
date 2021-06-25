@@ -19,9 +19,9 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
     const saveModal = async (editOperation)=>{
         try{ 
             const sendOperation={...editOperation}
-            //console.log("por grabar ==",'http://localhost:8080/api/admin/users/'+ usereditdetails._id)
-            const response = await axios.put('http://localhost:8080/api/admin/operations/'+ operationEditDetails._id , sendOperation, {headers: {Authorization: 'Bearer ' + token}});
-            //console.log("put de usuario-response",response)
+           
+            const response = await axios.put('http://localhost:8080/api/operations/'+ operationEditDetails._id , sendOperation, {headers: {Authorization: 'Bearer ' + token}});
+            
             message.success("Operation Updated")
             closeModal()
             if (operationEditDetails.operationType=='expense'){
@@ -48,15 +48,14 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
     }
 
     useEffect(()=>{
-        //console.log("EDITMODAL-useEffect de seteo")
+        
         if (typeof operationEditDetails !== undefined){
             formedit.setFieldsValue ({
                 concept:operationEditDetails.concept, 
                 amount: operationEditDetails.amount,
                 //date : expensesEditDetails.date,
-                //No se puede editar el tipo de operacion
-                }
-                )
+            }
+            )
         } else {
             formedit.setFieldsValue ({
                 concept : '',

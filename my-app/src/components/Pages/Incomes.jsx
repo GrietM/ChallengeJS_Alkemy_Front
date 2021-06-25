@@ -16,7 +16,7 @@ const Incomes = () => {
     const getAllIncomes = async () => {
         if(token){
         try{
-          const resp = await axios.get('http://localhost:8080/api/admin/operationsbytype?operationType=income'
+          const resp = await axios.get('http://localhost:8080/api/operationsbytype?operationType=income'
         ,{headers: {Authorization: 'Bearer ' + token}});
           setIncomes(resp.data)  
         }

@@ -17,12 +17,9 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
  
     const saveModal = async (newoperation)=>{
         try{ 
-            console.log("por grabar ==", newoperation)
-            const response = await axios.post('http://localhost:8080/api/admin/operations/', newoperation,{headers: {Authorization: 'Bearer ' + token}});
-            //console.log("post de usuario-response",response)
+            const response = await axios.post('http://localhost:8080/api/operations/', newoperation,{headers: {Authorization: 'Bearer ' + token}});
             message.success("Operation succesfully created")
             closeOperationModal()
-           // getAllOperations()
         } catch (error) {
             message.error("Failed to create operation. Clear your entries and check fields requirements shown in red")
             throw error

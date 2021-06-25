@@ -16,9 +16,7 @@ const Expenses = () => {
     const getAllExpenses = async () => {
         if (token){
         try{
-        
-          console.log('token:', token)
-          const resp = await axios.get('http://localhost:8080/api/admin/operationsbytype?operationType=expense',
+           const resp = await axios.get('http://localhost:8080/api/operationsbytype?operationType=expense',
            {headers: {Authorization: 'Bearer ' + token}}
           )
           setExpenses(resp.data)  

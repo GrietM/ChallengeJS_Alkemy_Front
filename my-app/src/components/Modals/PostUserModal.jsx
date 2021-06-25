@@ -16,12 +16,9 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
  
     const saveModal = async (newUser)=>{
         try{ 
-            console.log("por grabar ==", newUser)
-            const response = await axios.post('http://localhost:8080/api/admin/users/', newUser);
-            //console.log("post de usuario-response",response)
+            const response = await axios.post('http://localhost:8080/api/users/', newUser);
             message.success("User succesfully created")
             closeUserModal()
-           // getAllUsers()
         } catch (error) {
             message.error("Failed to create user - Error:"  + error)
             throw error
@@ -38,16 +35,6 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
     const handleCancel = ()=>{
         closeUserModal()
     }
-
-   /*  useEffect(()=>{
-        //console.log("EDITMODAL-useEffect de seteo")
-        formedit.setFieldsValue ({
-                firstName : '',
-                lastName : '',
-                userName :'x',
-                email : '',
-            password :'' })
-    }) */
 
     const formview={
         labelCol:{ span:4}, 

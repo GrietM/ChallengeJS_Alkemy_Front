@@ -1,6 +1,5 @@
 import React , {useState } from 'react';
 import { Form, Input, Button, Checkbox, Space, message } from 'antd';
-//import './Login.css'
 import axios from 'axios'
 import MyPostUserModal from '../Modals/PostUserModal';
 import MyCard from '../Card';
@@ -42,31 +41,18 @@ const Login = () => {
          userName: values.username,
          password: values.password
        }
-     //console.log ('userObject:', userObject)
+
      try{
-     const response = await axios.post('http://localhost:8080/api/admin/users/login/', userObject );
+     const response = await axios.post('http://localhost:8080/api/users/login/', userObject );
      localStorage.setItem("Token", response.data.token) 
-     console.log("Token generado exitosamente:", response.data.token)
+     console.log("Token succesfully generated:", response.data.token)
      message.success('Welcome to AcountANT',3,goToHome())
-      //readyToRedirect = true
      } catch(err){
        message.error('Login error. Check username and password entered',5)
      }
-    /*  finally{
-       if (readyToRedirect === true){
-         //console.log("finally" , values)
-         //activo el modal
-         setUserLogin(values)
-         setIsModalLogin(true)
-         HandleConfig()
-         //GoToMain()
-       }
-     }; */
+   
    }
- /*  const onFinish = (values) => {
-    console.log('Success:', values);
-  }; */
-
+ 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };

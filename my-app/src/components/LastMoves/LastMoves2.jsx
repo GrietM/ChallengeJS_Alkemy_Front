@@ -18,14 +18,12 @@ const LastMoves2 = () => {
     const getAllOperations = async () => {
         
         try{
-          const resp = await axios.get('http://localhost:8080/api/admin/operations',{headers: {Authorization: 'Bearer ' + token}});
-          
-          console.log(resp)
+          const resp = await axios.get('http://localhost:8080/api/operations',{headers: {Authorization: 'Bearer ' + token}});
           setOperations(resp.data)  
         }
         catch(error){
             localStorage.removeItem('Token') 
-            message.error("Session expired. Please Login to continue operating", 4, GoToMain)
+            message.error("Session expired. Please Login to continue operating", 2, GoToMain)
             throw error        
         }}
 
