@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Layout/Layout.css'
 import { Layout, Menu, Breadcrumb } from 'antd';
 import  {NavLink,  Routes, Route} from 'react-router-dom';
 import {
@@ -22,7 +23,7 @@ import logo from '../../images/logo.png'
 import Balance from '../../components/Balance/Balance'
 import Home from '../Pages/Home';
 import OperationsTable from '../OperationsTable/OperationsTable';
-import Operations from '../Pages/Operations';
+import Operations from '../Operations';
 import Error404 from '../Pages/Error404';
 const jwt = require ('jsonwebtoken');
 
@@ -66,13 +67,13 @@ const MyLayout = () =>{
                     Expenses
                 </NavLink>
             </Menu.Item>
-            <Menu.Item className="item" key="4" icon={<PlusCircleOutlined/>}>
+            {/* <Menu.Item className="item" key="4" icon={<PlusCircleOutlined/>}>
                 <NavLink  to="/Operations"  style= {{fontWeight:'bolder'}}>
                     Add
                 </NavLink>
-            </Menu.Item>
-            <Menu.Item>
-                <LogOut />
+            </Menu.Item> */}
+            <Menu.Item className='logOut'>
+                <LogOut/>
             </Menu.Item>
             
         </Menu>
@@ -84,8 +85,7 @@ const MyLayout = () =>{
             <Route exact path="/" element= {<Login/>} />  
             <Route exact path="/Home" element= {<Home/>} />      
             <Route exact path="/Incomes" element= {<Incomes/>} />   
-            <Route exact path= "/Expenses" element = {<Expenses/>}/>   
-            <Route exact path= "/Operations" element = {<Operations/>}/>  
+            <Route exact path= "/Expenses" element = {<Expenses/>}/>     
             <Route exact path="*" element= {<Error404/>} /> 
             </Routes>
         </div>

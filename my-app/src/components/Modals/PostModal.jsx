@@ -36,13 +36,6 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
         message.error("ERROR en los datos. No cumplen las validaciones que se muestran en rojo")
     } 
 
-    /* const [value, setValue] = useState("admin")
-    const onChange =e=>{
-        console.log('value', value)
-        console.log('e.target.value', e.target.value)
-        setValue(e.target.value)
-    }
- */
     const handleCancel = ()=>{
         closeOperationModal()
     }

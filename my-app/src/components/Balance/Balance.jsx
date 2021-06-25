@@ -31,20 +31,22 @@ const Balance = () => {
         throw error        
     }}
  
-    //let date= new Date()
-     
-  useEffect(() =>{
+    useEffect(() =>{
     getOperationsBalance()
 },[]
 )
     return (
-  <Descriptions title="Current Balance" style= {{fontWeight:'bolder'}}>
-    {/* <Descriptions.Item label="UserName" style= {{fontWeight:'bolder'}}> Marce Griet</Descriptions.Item> */}
-    <Descriptions.Item label="Total Incomes"> {totalIncomes}$</Descriptions.Item>
-    <Descriptions.Item label="Total Expenses"> {totalExpenses}$</Descriptions.Item>
-    {/* <Descriptions.Item label="Balance at"> Date </Descriptions.Item> */}
-    <Descriptions.Item label="Total Balance"> {balance} $ </Descriptions.Item>
-  </Descriptions>
+      <div style={{backgroundColor:'white', paddingLeft:20}} >
+      <h2 style={{fontWeight:'bolder'}}>Current Balance</h2>
+      <Descriptions  
+        style= {{fontWeight:'bolder'}}
+        contentStyle={{fontSize:20}} 
+        labelStyle={{fontSize:20}}>
+        <Descriptions.Item label="Total Incomes"> ${totalIncomes}</Descriptions.Item>
+        <Descriptions.Item label="Total Expenses"> ${totalExpenses}</Descriptions.Item>
+        <Descriptions.Item label="Total Balance"> ${balance} </Descriptions.Item>
+      </Descriptions>
+      </div>
     )
 }
 

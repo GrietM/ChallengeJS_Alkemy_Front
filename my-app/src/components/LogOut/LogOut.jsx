@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import { UserOutlined } from '@ant-design/icons';
 import { Button, message } from 'antd';
 import GoToMain from '../GoToMain'
+
+
 const jwt = require ('jsonwebtoken');
 const token = localStorage.getItem('Token')
 
@@ -25,6 +27,7 @@ const handleLogOut = () => {
     <Button 
         type="primary" 
         onClick={handleLogOut}
+        style={{fontWeight:'bolder'}}
     >
         {logOutLegend()}
     </Button>

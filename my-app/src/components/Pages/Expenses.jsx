@@ -30,7 +30,7 @@ const Expenses = () => {
         }
         }   
         else {
-            message.error('Please Login to access this information. Redirecting to Login Page...', GoToMain)
+            message.error('Please Login to access this information. Redirecting to Login Page...',2, GoToMain)
           }
         }
 
