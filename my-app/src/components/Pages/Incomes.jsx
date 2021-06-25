@@ -87,6 +87,8 @@ const Incomes = () => {
     if (token){   
     return(
         <div>
+        <br/>
+        <h2>Incomes</h2>
         <PostModal 
         postModal={operationVisible} 
         setModal={setModal} 

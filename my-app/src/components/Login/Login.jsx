@@ -2,7 +2,8 @@ import React , {useState } from 'react';
 import { Form, Input, Button, Checkbox, Space, message } from 'antd';
 //import './Login.css'
 import axios from 'axios'
-//import ConfirmLogin from '../Modal/ConfirmLogin'
+import MyPostUserModal from '../Modals/PostUserModal';
+import MyCard from '../Card';
 
 const layout = {
   labelCol: {
@@ -21,11 +22,19 @@ const tailLayout = {
 
 const Login = () => {
 
+  const token = localStorage.getItem('Token') 
+
   const goToHome = () => {
     window.location.href = '/Home'        
-}
- 
- 
+  } 
+  
+  const [userModalVisible, setUserModalVisible] = useState(false)
+
+  const openUserModal = ()=>{
+    setUserModalVisible(true)
+  }
+
+
   const onFinish = async(values) => {
      console.log('Success:', values);
      const userObject = 
@@ -62,12 +71,12 @@ const Login = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const CreateUser = () => {
-    alert('Armar un post de user con un modal')
-  }
-
+  if (!token){
   return (
+    <div>
+      <br></br>
     <Space>
+    
     <Form
       {...layout}
       name="basic"
@@ -113,14 +122,26 @@ const Login = () => {
         </Button>
       </Form.Item>
       <Form.Item {...tailLayout}>
-        <Button type="primary" onClick={CreateUser}>
+        <Button type="primary" onClick={ openUserModal}>
           Create User
         </Button>
+        <MyPostUserModal 
+        userModalVisible={userModalVisible} 
+        setUserModalVisible={setUserModalVisible} 
+        //getAllUsers={getAllUsers} 
+      />
       </Form.Item>
       </div>
     </Form>
     </Space>
-  );
+    </div>
+  )} 
+  else 
+  {
+    return (
+      <MyCard style={{textAlign:'center'}}></MyCard>
+    )
+  }
 };
 
 export default Login

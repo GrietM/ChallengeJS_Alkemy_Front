@@ -23,6 +23,7 @@ import Balance from '../../components/Balance/Balance'
 import Home from '../Pages/Home';
 import OperationsTable from '../OperationsTable/OperationsTable';
 import Operations from '../Pages/Operations';
+import Error404 from '../Pages/Error404';
 const jwt = require ('jsonwebtoken');
 
 const { Header, Content, Footer } = Layout;
@@ -46,7 +47,7 @@ const MyLayout = () =>{
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
             <Menu.Item className="item" key="0" icon={<UserOutlined/>}>
-                <NavLink to="/"  style= {{fontWeight:'bolder'}} onClick={()=>{alert('hello!')}}>
+                <NavLink to="/"  style= {{fontWeight:'bolder'}}>
                 {loginLegend()}
                 </NavLink>          
             </Menu.Item>
@@ -84,7 +85,8 @@ const MyLayout = () =>{
             <Route exact path="/Home" element= {<Home/>} />      
             <Route exact path="/Incomes" element= {<Incomes/>} />   
             <Route exact path= "/Expenses" element = {<Expenses/>}/>   
-            <Route exact path= "/Operations" element = {<Operations/>}/>   
+            <Route exact path= "/Operations" element = {<Operations/>}/>  
+            <Route exact path="*" element= {<Error404/>} /> 
             </Routes>
         </div>
         </Content>

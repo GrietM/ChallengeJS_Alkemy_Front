@@ -74,16 +74,7 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
             form={formedit}
             {...formview}
         >
-           {/*   <Item label="Tipo" 
-                name="type" 
-                rules={[{ required: true, message: 'Seleccione el TIPO de usuario' }]}
-            >
-                <Group noStyle onChange={onChange} value={value} name="radioButton" >
-                    <Radio value={"admin"}>Administrador</Radio>
-                    <Radio value={"visitor"}>Visita</Radio>
-                </Group>
-            </Item> */}
-            <Item label="Concept" 
+             <Item label="Concept" 
                 name="concept" 
                 rules={[{ required: true, message: 'Ingrese el NOMBRE (max:20)' , max:20 }]}
                 

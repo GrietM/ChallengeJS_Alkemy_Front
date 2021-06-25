@@ -94,6 +94,8 @@ const columns =[
     if (token){
     return(
         <div>
+            <br/>
+            <h2>Expenses</h2>
             <PostModal 
             postModal={operationVisible} 
             setModal={setModal} 

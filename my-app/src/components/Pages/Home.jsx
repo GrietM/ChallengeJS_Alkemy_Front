@@ -14,6 +14,7 @@ const Home = () => {
     if (token){
     return(
        <>
+       <br/>
        <Balance/>
        <br/>
        <Button type="primary" onClick={goToNewOperation}>
