@@ -19,3 +19,8 @@
 .logOut{
   left:550px;
 }
+
+.logo{
+  max-width: 100px; 
+  height: 50px;
+}

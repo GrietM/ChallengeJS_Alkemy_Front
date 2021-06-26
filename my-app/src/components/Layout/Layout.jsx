@@ -1,30 +1,24 @@
 import React from 'react'
 import '../Layout/Layout.css'
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu} from 'antd';
 import  {NavLink,  Routes, Route} from 'react-router-dom';
 import {
     HomeOutlined,
-    IdcardOutlined,
-    PictureOutlined,
-    TeamOutlined,
-    ShopOutlined,
-    SettingOutlined,
     DollarOutlined,
     WalletOutlined,
-    StrikethroughOutlined ,
-    PlusCircleOutlined,
     UserOutlined
   } from '@ant-design/icons';
 import LogOut from '../LogOut/LogOut';
 import Expenses from '../Pages/Expenses';
 import Incomes from '../Pages/Incomes';
 import Login from '../Login/Login'
-import logo from '../../images/logo.png'
-import Balance from '../../components/Balance/Balance'
+import logo from '../../images/logo6.png'
+//import Balance from '../../components/Balance/Balance'
 import Home from '../Pages/Home';
-import OperationsTable from '../OperationsTable/OperationsTable';
-import Operations from '../Operations';
+//import OperationsTable from '../OperationsTable/OperationsTable';
+//import Operations from '../Operations';
 import Error404 from '../Pages/Error404';
+
 const jwt = require ('jsonwebtoken');
 
 const { Header, Content, Footer } = Layout;
@@ -45,8 +39,12 @@ const MyLayout = () =>{
     return (
     <Layout className="layout">
         <Header>
-        <div className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
+        <Menu.Item className="item" key="5" >
+                <div className='logo' style={{alignContent:'center'}}>
+                <img src={logo}/>
+                </div>       
+            </Menu.Item>
             <Menu.Item className="item" key="0" icon={<UserOutlined/>}>
                 <NavLink to="/"  style= {{fontWeight:'bolder'}}>
                 {loginLegend()}

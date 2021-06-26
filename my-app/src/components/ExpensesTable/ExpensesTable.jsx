@@ -1,7 +1,7 @@
 import React from 'react'
-import { Table, Tag, Space } from 'antd';
+import { Table } from 'antd';
 
-const { Column, ColumnGroup } = Table;
+const { Column} = Table;
 
 
 const data = [

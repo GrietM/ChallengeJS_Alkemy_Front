@@ -1,11 +1,6 @@
-import React, {useState} from 'react'
-import { UserOutlined } from '@ant-design/icons';
+import React from 'react'
 import { Button, message } from 'antd';
 import GoToMain from '../GoToMain'
-
-
-const jwt = require ('jsonwebtoken');
-const token = localStorage.getItem('Token')
 
 const LogOut = () =>{  
 

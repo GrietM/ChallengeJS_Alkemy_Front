@@ -7,6 +7,8 @@ import EditModal from '../Modals/EditModal'
 import PostModal from '../Modals/PostModal'
 import GoToMain from '../GoToMain'
 
+const jwt = require ('jsonwebtoken');
+
 const Expenses = () => {
     const [expenses, setExpenses] = useState([])
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -14,23 +16,31 @@ const Expenses = () => {
     const token = localStorage.getItem('Token') 
 
     const getAllExpenses = async () => {
-        if (token){
-        try{
-           const resp = await axios.get('http://localhost:8080/api/operationsbytype?operationType=expense',
-           {headers: {Authorization: 'Bearer ' + token}}
-          )
-          setExpenses(resp.data)  
-        }
-        catch(error){
-            localStorage.removeItem('Token') 
-            message.error("Session expired. Please Login to continue operating", 4, GoToMain)
-            throw error        
-        }
-        }   
+        
+    if (token){
+        const decoded = jwt.verify(token, 'AlkemyChallengeJS')
+        console.log("decoded",decoded)
+        console.log("userName:", decoded.userName)
+    
+        if (decoded.userName){
+            try{
+            const resp = await axios.get('http://localhost:8080/api/operationsbytype?operationType=expense',
+            {headers: {Authorization: 'Bearer ' + token}}
+            )
+                setExpenses(resp.data)  
+            }
+            catch(error){
+                //localStorage.removeItem('Token') 
+                message.error("Session expired. Please Login to continue operating", 4, GoToMain)
+                throw error        
+            } 
+        } 
         else {
+            //console.log("decoded:", decoded)
+            //if (decoded)
             message.error('Please Login to access this information. Redirecting to Login Page...',2, GoToMain)
           }
-        }
+        }}
 
         useEffect(() =>{
             getAllExpenses()

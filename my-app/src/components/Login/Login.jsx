@@ -46,7 +46,7 @@ const Login = () => {
      const response = await axios.post('http://localhost:8080/api/users/login/', userObject );
      localStorage.setItem("Token", response.data.token) 
      console.log("Token succesfully generated:", response.data.token)
-     message.success('Welcome to AcountANT',3,goToHome())
+     message.success('Welcome to AccountANT',3,goToHome)
      } catch(err){
        message.error('Login error. Check username and password entered',5)
      }
