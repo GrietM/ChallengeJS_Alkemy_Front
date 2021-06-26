@@ -21,8 +21,9 @@ const Incomes = () => {
           setIncomes(resp.data)  
         }
         catch(error){
-            localStorage.removeItem('Token') 
-            message.error("Session expired. Please Login to continue operating", 4, GoToMain)
+           // localStorage.removeItem('Token') 
+           // message.error("Session expired. Please Login to continue operating", 4, GoToMain)
+           // message(error)
             throw error        
         }}
         else {

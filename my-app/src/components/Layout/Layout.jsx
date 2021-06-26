@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import '../Layout/Layout.css'
-import { Layout, Menu} from 'antd';
+import { Layout, Menu, Drawer, Button,Anchor} from 'antd';
 import  {NavLink,  Routes, Route} from 'react-router-dom';
 import {
     HomeOutlined,
     DollarOutlined,
     WalletOutlined,
-    UserOutlined
+    UserOutlined,
+    MenuOutlined 
   } from '@ant-design/icons';
 import LogOut from '../LogOut/LogOut';
 import Expenses from '../Pages/Expenses';
@@ -23,6 +24,8 @@ const jwt = require ('jsonwebtoken');
 
 const { Header, Content, Footer } = Layout;
 
+const { Link } = Anchor;
+
 const token = localStorage.getItem('Token')
 
 const loginLegend = () => {
@@ -36,9 +39,21 @@ const loginLegend = () => {
 
 
 const MyLayout = () =>{
+
+    const [visible, setVisible] = useState(false);
+
+  const showDrawer = () => {
+    setVisible(true);
+  };
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
     return (
     <Layout className="layout">
-        <Header>
+        <div>
+        <Header className='mobileHidden'>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
         <Menu.Item className="item" key="5" >
                 <div className='logo' style={{alignContent:'center'}}>
@@ -70,12 +85,32 @@ const MyLayout = () =>{
                     Add
                 </NavLink>
             </Menu.Item> */}
-            <Menu.Item className='logOut'>
+            <Menu.Item >
                 <LogOut/>
             </Menu.Item>
             
         </Menu>
         </Header>
+        </div>
+        <div className='mobileVisible'>
+        <Button type="primary" onClick={showDrawer}>
+        {<MenuOutlined />} Menu
+      </Button>
+      <Drawer
+        title="Menu"
+        placement="right"
+        closable={false}
+        onClose={onClose}
+        visible={visible}
+      >
+  <Anchor>
+    <Link href="/" title="Login" />
+    <Link href="/Home" title="Home" />
+    <Link href="/Expenses" title="Expenses"/>
+    <Link href="/Incomes" title="Incomes" />
+   </Anchor>,
+ </Drawer>
+      </div>
         <Content style={{ padding: '0 50px' }}>
         <div className="site-layout-content">
            

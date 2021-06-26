@@ -22,7 +22,7 @@ const Expenses = () => {
         console.log("decoded",decoded)
         console.log("userName:", decoded.userName)
     
-        if (decoded.userName){
+        //if (decoded.userName){
             try{
             const resp = await axios.get('http://localhost:8080/api/operationsbytype?operationType=expense',
             {headers: {Authorization: 'Bearer ' + token}}
@@ -40,7 +40,7 @@ const Expenses = () => {
             //if (decoded)
             message.error('Please Login to access this information. Redirecting to Login Page...',2, GoToMain)
           }
-        }}
+        }
 
         useEffect(() =>{
             getAllExpenses()

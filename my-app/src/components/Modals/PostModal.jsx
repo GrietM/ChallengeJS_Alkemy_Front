@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Modal , Button, Form , Input, message, Radio, Col , Row, DatePicker, Select} from 'antd'
 import axios from 'axios'
-import Password from 'antd/lib/input/Password'
+//import Password from 'antd/lib/input/Password'
 
+const jwt = require ('jsonwebtoken');
 
 const { Item } = Form
 const { Group } = Radio
 const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations}) => {
     
     const token = localStorage.getItem('Token')
+    const decoded = jwt.verify(token, 'AlkemyChallengeJS')
+
     const [formedit] = Form.useForm()
    
     const closeOperationModal = ()=>{
@@ -87,12 +90,15 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
                     <Select.Option value="income">Income</Select.Option>
                 </Select>
             </Item>
-            
+            <Item label="User" name="user">
+                {decoded.userName}
+            </Item>
             <Item style={{textAlign:'center'}}>
                 <Button type="primary" htmlType="submit">Guardar</Button>
                 &nbsp;&nbsp;&nbsp;
                 <Button htmlType="button" onClick={handleCancel}>Cancelar</Button>
             </Item>
+            
         </Form>
       </Col>
       </Row>
