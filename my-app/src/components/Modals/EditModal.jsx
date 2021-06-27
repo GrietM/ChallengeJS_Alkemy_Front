@@ -65,7 +65,7 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
     
     return (
     <div>
-      <Modal title='OPeration Editing' 
+      <Modal title='Operation Editing' 
         visible={isEditModalVisible}
         width={700}
         footer={null}
