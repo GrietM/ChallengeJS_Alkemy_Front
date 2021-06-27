@@ -13,7 +13,7 @@ const Balance = () => {
   const token = localStorage.getItem('Token') 
   const getOperationsBalance = async () => {
     try{
-      const resp = await axios.get('http://localhost:8080/api/balance',{headers: {Authorization: 'Bearer ' + token}});
+      const resp = await axios.get('http://localhost:8080/api/operationsbalance',{headers: {Authorization: 'Bearer ' + token}});
       let totalExpenses= resp.data.totalExpenses
       let totalIncomes= resp.data.totalIncomes
       let balance = resp.data.balance

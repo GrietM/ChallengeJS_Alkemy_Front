@@ -34,7 +34,7 @@ const Login = () => {
   }
 
   const onFinish = async(values) => {
-     console.log('Success:', values);
+     
      const userObject = 
        {
          userName: values.username,

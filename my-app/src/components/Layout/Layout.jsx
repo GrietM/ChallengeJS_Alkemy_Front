@@ -34,7 +34,6 @@ const loginLegend = () => {
     }
 }
 
-
 const MyLayout = () =>{
 
     const [visible, setVisible] = useState(false);
@@ -85,20 +84,22 @@ const MyLayout = () =>{
         </div>
         <div className='mobileVisible'>
             <Button type="primary" onClick={showDrawer}>
-            {<MenuOutlined />} Menu
+            {<MenuOutlined />} <b>Menu</b>
             </Button>
             <Drawer
-            title="Menu"
             placement="right"
             closable={false}
             onClose={onClose}
             visible={visible}
             >
                 <Anchor>
-                    <Link href="/" title="Login" />
+                    <Link href="/" title="Login"/>
+                    <br/>
                     <Link href="/Home" title="Home" />
                     <Link href="/Expenses" title="Expenses"/>
                     <Link href="/Incomes" title="Incomes" />
+                    <br/>
+                    <LogOut/>
                 </Anchor>,
             </Drawer>
       </div>

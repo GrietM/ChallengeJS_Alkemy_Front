@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react'
-import { Table , message} from 'antd'
+import { Table } from 'antd'
 import axios from 'axios'
-import GoToMain from '../GoToMain/GoToMain'
 
 const { Column } = Table;
 
@@ -18,8 +17,6 @@ const LastMoves = () => {
           setOperations(resp.data)  
         }
         catch(error){
-            localStorage.removeItem('Token') 
-            message.error("Session expired. Please Login to continue operating", 2, GoToMain)
             throw error        
         }}
 

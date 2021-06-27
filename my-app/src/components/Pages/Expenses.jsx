@@ -9,8 +9,6 @@ import EditModal from '../Modals/EditModal'
 import PostModal from '../Modals/PostModal'
 import GoToMain from '../../components/GoToMain/GoToMain'
 
-const jwt = require ('jsonwebtoken');
-
 const Expenses = () => {
     const [expenses, setExpenses] = useState([])
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -93,25 +91,25 @@ const Expenses = () => {
         <div>
             <br/>
             <h2>Expenses</h2>
-            <PostModal 
+            <PostModal key={'post'}
             postModal={operationVisible} 
             setModal={setModal} 
             getAllExpenses={getAllExpenses} 
             />
-            <DeleteModal 
+            <DeleteModal  key={'delete'}
             isModalVisible={isModalVisible} 
             setIsModalVisible={setIsModalVisible} 
             getAllExpenses={getAllExpenses} 
             operationDetails={operationDetails} 
             />
-            <EditModal 
+            <EditModal  key={'edit'}
             isEditModalVisible={isEditModalVisible}
             setIsEditModalVisible={setIsEditModalVisible} 
             getAllExpenses={getAllExpenses} 
             operationEditDetails={operationEditDetails} 
             setOperationEditDetails={setOperationEditDetails}
             />
-            <Table columns= {columns} dataSource={expenses}/>
+            <Table key = {'T'} columns= {columns} dataSource={expenses}/>
         </div>
         )}
         else {

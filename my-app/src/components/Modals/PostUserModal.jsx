@@ -13,14 +13,13 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
    
     const closeUserModal = ()=>{
         setUserModalVisible(false)
-        window.location.href = '/Home';
     }
  
     const saveModal = async (newUser)=>{
         try{ 
             const response = await axios.post('http://localhost:8080/api/users/', newUser);
             message.success(`User succesfully created. User Name: ${response.data.userName} `)
-            closeUserModal()
+            closeUserModal()            
         } 
         catch (error) {
             message.error("Failed to create user - This user already exists")

@@ -49,8 +49,7 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
         if (typeof operationEditDetails !== undefined){
             formedit.setFieldsValue ({
                 concept:operationEditDetails.concept, 
-                amount: operationEditDetails.amount,
-                //date : expensesEditDetails.date,
+                amount: operationEditDetails.amount
             }
             )
         }
@@ -58,13 +57,11 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
             formedit.setFieldsValue ({
                 concept : '',
                 amount : '',
-                //date :''
                 })
         }
     } , [formedit,operationEditDetails])
 
     const dateFormat = 'YYYY/MM/DD';
-    const customFormat = value => `custom format: ${value.format(dateFormat)}`;
     
     return (
     <div>
@@ -96,7 +93,7 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
                 <Input />
             </Item>         
             <Item label="Date" name="date">
-                <DatePicker format={customFormat} />
+                <DatePicker format={dateFormat} />
             </Item>
             <p style={{textAlign:'center'}}>Operation type cannot be modified</p>
             <Item style={{textAlign:'center'}}>
