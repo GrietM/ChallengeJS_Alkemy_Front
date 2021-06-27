@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { Descriptions } from 'antd';
-//import { getTimeProps } from 'antd/lib/date-picker/generatePicker';
 import axios from 'axios'
 
 const Balance = () => {
@@ -27,9 +26,9 @@ const Balance = () => {
         throw error        
     }}
  
-    useEffect(() =>{
-    getOperationsBalance()
-},[]
+    useEffect(() =>{ 
+      getOperationsBalance()
+    },[]
 )
     return (
       <div style={{backgroundColor:'white', paddingLeft:20}} >

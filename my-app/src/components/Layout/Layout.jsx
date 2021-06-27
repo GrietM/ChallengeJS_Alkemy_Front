@@ -57,7 +57,7 @@ const MyLayout = () =>{
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
         <Menu.Item className="item" key="5" >
                 <div className='logo' style={{alignContent:'center'}}>
-                <img src={logo}/>
+                <img src={logo} alt={'logo'}/>
                 </div>       
             </Menu.Item>
             <Menu.Item className="item" key="0" icon={<UserOutlined/>}>
@@ -123,7 +123,7 @@ const MyLayout = () =>{
             </Routes>
         </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Marcela Griet</Footer>
+        <Footer style={{ textAlign: 'center' }}> --- Created by <strong>Marcela Griet</strong>  --- </Footer>
     </Layout>
 )
 }

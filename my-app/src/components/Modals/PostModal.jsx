@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { Modal , Button, Form , Input, message, Radio, Col , Row, DatePicker, Select} from 'antd'
+import React from 'react'
+import { Modal , Button, Form , Input, message, Col , Row, DatePicker, Select} from 'antd'
 import axios from 'axios'
 //import Password from 'antd/lib/input/Password'
 
 const jwt = require ('jsonwebtoken');
 
 const { Item } = Form
-const { Group } = Radio
+
 const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations}) => {
     
     const token = localStorage.getItem('Token')
@@ -16,11 +16,12 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
    
     const closeOperationModal = ()=>{
         setOperationVisible(false)
+        window.location.href = window.location.href; // eslint-disable-line
     }
  
     const saveModal = async (newoperation)=>{
         try{ 
-            const response = await axios.post('http://localhost:8080/api/operations/', newoperation,{headers: {Authorization: 'Bearer ' + token}});
+            await axios.post('http://localhost:8080/api/operations/', newoperation,{headers: {Authorization: 'Bearer ' + token}});
             message.success("Operation succesfully created")
             closeOperationModal()
         } catch (error) {

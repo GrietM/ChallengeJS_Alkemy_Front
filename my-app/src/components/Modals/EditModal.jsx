@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Modal , Button,DatePicker, Form , Input, message, Radio, Col , Row} from 'antd'
+import React, { useEffect } from 'react'
+import { Modal , Button,DatePicker, Form , Input, message, Col , Row} from 'antd'
 import axios from 'axios'
 
-
 const { Item } = Form
-const { Group } = Radio
 
 const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,getAllIncomes, operationEditDetails, setOperationEditDetails}) => {
     
@@ -20,14 +18,16 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
         try{ 
             const sendOperation={...editOperation}
            
-            const response = await axios.put('http://localhost:8080/api/operations/'+ operationEditDetails._id , sendOperation, {headers: {Authorization: 'Bearer ' + token}});
+            await axios.put('http://localhost:8080/api/operations/'+ operationEditDetails._id , sendOperation, {headers: {Authorization: 'Bearer ' + token}});
             
             message.success("Operation Updated")
             closeModal()
-            if (operationEditDetails.operationType=='expense'){
+            if (operationEditDetails.operationType ==='expense'){
                 getAllExpenses()
+                
                 } else{
                 getAllIncomes()
+               
                 }
             
         } catch (error) {
@@ -47,7 +47,7 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
         closeModal()
     }
 
-    useEffect(()=>{
+    useEffect(()=>{ 
         
         if (typeof operationEditDetails !== undefined){
             formedit.setFieldsValue ({

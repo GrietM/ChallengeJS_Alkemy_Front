@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, message } from 'antd';
-import GoToMain from '../GoToMain'
+import GoToMain from '../GoToMain/GoToMain'
 
 const LogOut = () =>{  
 
@@ -13,7 +13,7 @@ const LogOut = () =>{
 
 const handleLogOut = () => {
     localStorage.removeItem('Token')
-    message.success('Logged Out! Thanks for your visit',5)
+    message.success('Logging Out! Thanks for your visit',5)
     setTimeout(GoToMain, 2000);
 }
 

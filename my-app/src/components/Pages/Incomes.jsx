@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Table, message } from 'antd'
 import axios from 'axios'
-import {DeleteOutlined , EditOutlined, PlusCircleOutlined} from '@ant-design/icons'
+import {DeleteOutlined , EditOutlined} from '@ant-design/icons'
 import DeleteModal from '../Modals/DeleteModal'
 import EditModal from '../Modals/EditModal'
 import PostModal from '../Modals/PostModal'
-import GoToMain from '../GoToMain'
+import GoToMain from '../GoToMain/GoToMain'
 
 const Incomes = () => {
     const [incomes, setIncomes] = useState([])
@@ -31,7 +31,7 @@ const Incomes = () => {
           }
         }
 
-        useEffect(() =>{
+        useEffect(() =>{ 
             getAllIncomes()
         },[]
         )

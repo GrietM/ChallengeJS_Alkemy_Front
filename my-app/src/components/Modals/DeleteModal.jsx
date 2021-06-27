@@ -13,9 +13,9 @@ const ConfirmModal = ({isModalVisible ,setIsModalVisible ,  getAllExpenses, getA
 
   const handleOnDelete = async (hhh) => {
     try{
-      const response = await axios.delete(operationid,{headers: {Authorization: 'Bearer ' + token}});
+      await axios.delete(operationid,{headers: {Authorization: 'Bearer ' + token}});
       message.success('Operation succesfully deleted')
-      if (operationDetails.operationType=='expense'){
+      if (operationDetails.operationType ==='expense'){
       getAllExpenses()
       } else{
       getAllIncomes()

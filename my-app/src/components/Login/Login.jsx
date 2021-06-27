@@ -2,7 +2,7 @@ import React , {useState } from 'react';
 import { Form, Input, Button, Checkbox, Space, message } from 'antd';
 import axios from 'axios'
 import MyPostUserModal from '../Modals/PostUserModal';
-import MyCard from '../Card';
+import MyCard from '../Card/Card';
 
 const layout = {
   labelCol: {
@@ -45,8 +45,7 @@ const Login = () => {
      try{
      const response = await axios.post('http://localhost:8080/api/users/login/', userObject );
      localStorage.setItem("Token", response.data.token) 
-     console.log("Token succesfully generated:", response.data.token)
-     message.success('Welcome to AccountANT',3,goToHome)
+     message.success('Welcome to AccountANT',goToHome)
      } catch(err){
        message.error('Login error. Check username and password entered',5)
      }
@@ -114,7 +113,6 @@ const Login = () => {
         <MyPostUserModal 
         userModalVisible={userModalVisible} 
         setUserModalVisible={setUserModalVisible} 
-        //getAllUsers={getAllUsers} 
       />
       </Form.Item>
       </div>

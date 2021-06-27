@@ -1,124 +1,40 @@
-import React from 'react'
-import { Table, Tag, Space } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { Table , message} from 'antd'
+import axios from 'axios'
+import GoToMain from '../GoToMain/GoToMain'
 
-const { Column, ColumnGroup } = Table;
+const { Column } = Table;
 
-const data = [
-  {
-    key: '1',
-    firstName: 'John',
-    lastName: 'Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    firstName: 'Jim',
-    lastName: 'Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-];
+const LastMoves2 = () => {
+    const [operations, setOperations] = useState([])
+    const token = localStorage.getItem('Token') 
 
-const LastMoves = () =>{
+    const getAllOperations = async () => {
+        
+        try{
+          const resp = await axios.get('http://localhost:8080/api/operations',{headers: {Authorization: 'Bearer ' + token}});
+          setOperations(resp.data)  
+        }
+        catch(error){
+            localStorage.removeItem('Token') 
+            message.error("Session expired. Please Login to continue operating", 2, GoToMain)
+            throw error        
+        }}
+
+        useEffect(() =>{ 
+            getAllOperations()
+        },[]
+        )
+
     return(
-        <Table dataSource={data}>
-            <Column title="First Name" dataIndex="firstName" key="firstName" />
-            <Column title="Last Name" dataIndex="lastName" key="lastName" />
-            <Column title="Age" dataIndex="age" key="age" />
-            <Column title="Address" dataIndex="address" key="address" />
-            <Column
-            title="Tags"
-            dataIndex="tags"
-            key="tags"
-            render={tags => (
-                <>
-                {tags.map(tag => (
-                    <Tag color="blue" key={tag}>
-                    {tag}
-                    </Tag>
-                ))}
-                </>
-            )}
-            />
-            <Column
-            title="Action"
-            key="action"
-            render={(text, record) => (
-                <Space size="middle">
-                <a>Invite {record.lastName}</a>
-                <a>Delete</a>
-                </Space>
-            )}
-            />
-        </Table>
-    )
-}
-
-export default LastMoves
+           <Table dataSource={operations} pagination={{ position: ['none','none'] }}>
+                <Column title="Concept" dataIndex="concept" key="concept" />
+                <Column title="Amount" dataIndex="amount" key="amount" />
+                <Column title="Date" dataIndex="date" key="date" />
+                <Column title="Operation" dataIndex="operationType" key="operation" />
+            </Table>
+        )
+    }
+    
+    
+export default LastMoves2;

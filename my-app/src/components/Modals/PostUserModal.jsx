@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import { Modal , Button, Form , Input, message, Radio, Col , Row, DatePicker, Select} from 'antd'
+import React from 'react'
+import { Modal , Button, Form , Input, message, Col , Row} from 'antd'
 import axios from 'axios'
 import Password from 'antd/lib/input/Password'
 
-
 const { Item } = Form
-const { Group } = Radio
+
 const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) => {
     
     const [formedit] = Form.useForm()
    
     const closeUserModal = ()=>{
         setUserModalVisible(false)
+        window.location.href = window.location.href;
     }
  
     const saveModal = async (newUser)=>{
         try{ 
             const response = await axios.post('http://localhost:8080/api/users/', newUser);
-            message.success("User succesfully created")
+            message.success(`User succesfully created. User Name: ${response.data.userName} `)
             closeUserModal()
         } catch (error) {
-            message.error("Failed to create user - Error:"  + error)
+            message.error("Failed to create user - This user already exists")
             throw error
         }
     }
@@ -64,7 +64,6 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
             <Item label="First Name" 
                 name="firstName" 
                 rules={[{ required: true, message: 'Enter first name (max:20)' , max:20 }]}
-                
             >
                 <Input/>
             </Item>
@@ -77,7 +76,7 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
             </Item>
             <Item label="Email" 
                 name="email" 
-                rules={[{ required: true, message: 'Enter a valid email adress (max:20)' , max:20}]}
+                rules={[{ required: true, message: 'Enter a valid email adress'}]}
                 
             >
                 <Input  />

@@ -1,9 +1,8 @@
-import { Button, message, Space } from 'antd'
+import { Button, message } from 'antd'
 import React, {useState} from 'react'
 import Balance from '../Balance/Balance'
-import ExpensesTable from '../ExpensesTable/ExpensesTable'
-import LastMoves2 from '../LastMoves/LastMoves2'
-import GoToMain from '../GoToMain'
+import LastMoves from '../LastMoves/LastMoves'
+import GoToMain from '../../components/GoToMain/GoToMain'
 import MyPostModal from '../Modals/PostModal'
 import {PlusCircleOutlined} from '@ant-design/icons';
 
@@ -30,7 +29,7 @@ const Home = () => {
         />
         <br/>
        <h3 style={{fontWeight:'bolder'}}>Check your recent activity</h3>
-       <LastMoves2/>
+       <LastMoves/>
         </>
     ) }
     else {
