@@ -15,13 +15,17 @@ const ConfirmModal = ({isModalVisible ,setIsModalVisible ,  getAllExpenses, getA
     try{
       await axios.delete(operationid,{headers: {Authorization: 'Bearer ' + token}});
       message.success('Operation succesfully deleted')
+
       if (operationDetails.operationType ==='expense'){
       getAllExpenses()
-      } else{
+      }
+      else{
       getAllIncomes()
       }
+
       setIsModalVisible(false)
-    } catch (error){
+    } 
+    catch (error){
       message.error('Error at Operation Deletion: ' + error)
       throw error
     }

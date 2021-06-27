@@ -16,7 +16,6 @@ const handleLogOut = () => {
     message.success('Logging Out! Thanks for your visit',5)
     setTimeout(GoToMain, 2000);
 }
-
     return (
     <>
     <Button 

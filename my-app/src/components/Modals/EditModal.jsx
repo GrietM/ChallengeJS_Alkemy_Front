@@ -17,20 +17,18 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
     const saveModal = async (editOperation)=>{
         try{ 
             const sendOperation={...editOperation}
-           
             await axios.put('http://localhost:8080/api/operations/'+ operationEditDetails._id , sendOperation, {headers: {Authorization: 'Bearer ' + token}});
-            
             message.success("Operation Updated")
             closeModal()
+
             if (operationEditDetails.operationType ==='expense'){
                 getAllExpenses()
-                
-                } else{
+            }
+            else{
                 getAllIncomes()
-               
-                }
-            
-        } catch (error) {
+            }      
+        } 
+        catch (error) {
             message.error("Failed to Update Operation. Clear your entries and check fields requirements shown in red")
             throw error
         }
@@ -42,7 +40,6 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
     const formFailed =(error) =>{
         message.error("ERROR. Failed to Update Operation. Clear your entries and check fields requirements shown in red")
     } 
-
     const onCancel = ()=>{
         closeModal()
     }
@@ -56,7 +53,8 @@ const EditModal =({isEditModalVisible, setIsEditModalVisible, getAllExpenses,get
                 //date : expensesEditDetails.date,
             }
             )
-        } else {
+        }
+        else {
             formedit.setFieldsValue ({
                 concept : '',
                 amount : '',

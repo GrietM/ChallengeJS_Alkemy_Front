@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react'
 import { Table , message} from 'antd'
 import axios from 'axios'
@@ -5,7 +7,7 @@ import GoToMain from '../GoToMain/GoToMain'
 
 const { Column } = Table;
 
-const LastMoves2 = () => {
+const LastMoves = () => {
     const [operations, setOperations] = useState([])
     const token = localStorage.getItem('Token') 
 
@@ -27,7 +29,7 @@ const LastMoves2 = () => {
         )
 
     return(
-           <Table dataSource={operations} pagination={{ position: ['none','none'] }}>
+           <Table key="lastMoves" dataSource={operations} pagination={{ position: ['none','none'] }} >
                 <Column title="Concept" dataIndex="concept" key="concept" />
                 <Column title="Amount" dataIndex="amount" key="amount" />
                 <Column title="Date" dataIndex="date" key="date" />
@@ -37,4 +39,4 @@ const LastMoves2 = () => {
     }
     
     
-export default LastMoves2;
+export default LastMoves;

@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React from 'react'
 import { Modal , Button, Form , Input, message, Col , Row} from 'antd'
 import axios from 'axios'
@@ -11,7 +13,7 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
    
     const closeUserModal = ()=>{
         setUserModalVisible(false)
-        window.location.href = window.location.href;
+        window.location.href = '/Home';
     }
  
     const saveModal = async (newUser)=>{
@@ -19,7 +21,8 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
             const response = await axios.post('http://localhost:8080/api/users/', newUser);
             message.success(`User succesfully created. User Name: ${response.data.userName} `)
             closeUserModal()
-        } catch (error) {
+        } 
+        catch (error) {
             message.error("Failed to create user - This user already exists")
             throw error
         }
@@ -31,7 +34,6 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
     const formFailed =(error) =>{
         message.error("Failed to create operation. Clear your entries and check fields requirements shown in red")
     } 
-
     const handleCancel = ()=>{
         closeUserModal()
     }
@@ -39,8 +41,7 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
     const formview={
         labelCol:{ span:4}, 
         wrapperCol:{span:20},
-      }
-
+    }
       
     return (
     <div>
@@ -49,7 +50,6 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
         width={700}
         footer={null}
         onCancel={closeUserModal}
-
       >
         <Row>
             <Col xs={4} sm={4} md={2} lg={2}></Col>
@@ -76,8 +76,7 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
             </Item>
             <Item label="Email" 
                 name="email" 
-                rules={[{ required: true, message: 'Enter a valid email adress'}]}
-                
+                rules={[{ required: true, message: 'Enter a valid email adress'}]}   
             >
                 <Input  />
             </Item>
@@ -88,7 +87,6 @@ const MyPostUserModal = ({userModalVisible, setUserModalVisible , getAllUsers}) 
             >
                 <Password  />
             </Item>
-            
             <Item style={{textAlign:'center'}}>
                 <Button type="primary" htmlType="submit">Submit</Button>
                 &nbsp;&nbsp;&nbsp;

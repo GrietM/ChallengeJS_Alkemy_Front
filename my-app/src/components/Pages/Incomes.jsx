@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react'
 import { Table, message } from 'antd'
 import axios from 'axios'
@@ -21,25 +23,23 @@ const Incomes = () => {
           setIncomes(resp.data)  
         }
         catch(error){
-           // localStorage.removeItem('Token') 
-           // message.error("Session expired. Please Login to continue operating", 4, GoToMain)
-           // message(error)
-            throw error        
-        }}
+           throw error        
+        }
+        }
         else {
             message.error('Please Login to access this information. Redirecting to Login Page...',2, GoToMain)
-          }
+        }
         }
 
         useEffect(() =>{ 
             getAllIncomes()
         },[]
         )
+
         const [operationVisible, setModal] = useState(false)
         const [ operationDetails, setOperationDetails]  = useState({})
 
-       const handleOnDelete = (event) => {
-            //antes de borrar llamar a un modal que confirme que quiere borrar ese libro
+        const handleOnDelete = (event) => {
             setOperationDetails (event)
             setIsModalVisible(true)
         } 
@@ -86,35 +86,35 @@ const Incomes = () => {
               },
         ]
     if (token){   
-    return(
-        <div>
-        <br/>
-        <h2>Incomes</h2>
-        <PostModal 
-        postModal={operationVisible} 
-        setModal={setModal} 
-        getAllIncomes={getAllIncomes} 
-        />
-        <DeleteModal 
-        isModalVisible={isModalVisible} 
-        setIsModalVisible={setIsModalVisible} 
-        getAllIncomes={getAllIncomes} 
-        operationDetails={operationDetails} 
-        />
-        <EditModal 
-        isEditModalVisible={isEditModalVisible}
-        setIsEditModalVisible={setIsEditModalVisible} 
-        getAllIncomes={getAllIncomes} 
-        operationEditDetails={operationEditDetails} 
-        setOperationEditDetails={setOperationEditDetails}
-        />
-           <Table columns= {columns} dataSource={incomes}/>
-        </div>
-        )}
-        else {
-            return null
-        }
+        return(
+            <div>
+            <br/>
+            <h2>Incomes</h2>
+            <PostModal 
+            postModal={operationVisible} 
+            setModal={setModal} 
+            getAllIncomes={getAllIncomes} 
+            />
+            <DeleteModal 
+            isModalVisible={isModalVisible} 
+            setIsModalVisible={setIsModalVisible} 
+            getAllIncomes={getAllIncomes} 
+            operationDetails={operationDetails} 
+            />
+            <EditModal 
+            isEditModalVisible={isEditModalVisible}
+            setIsEditModalVisible={setIsEditModalVisible} 
+            getAllIncomes={getAllIncomes} 
+            operationEditDetails={operationEditDetails} 
+            setOperationEditDetails={setOperationEditDetails}
+            />
+            <Table columns= {columns} dataSource={incomes}/>
+            </div>
+        )
     }
-    
-    
+    else {
+        return null
+        }
+}
+     
 export default Incomes;

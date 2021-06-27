@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react'
 import { Table, message } from 'antd'
 import axios from 'axios'
@@ -16,56 +18,44 @@ const Expenses = () => {
     const token = localStorage.getItem('Token') 
 
     const getAllExpenses = async () => {
-        
-    if (token){
-        const decoded = jwt.verify(token, 'AlkemyChallengeJS')
-        console.log("decoded",decoded)
-        console.log("userName:", decoded.userName)
-    
-        //if (decoded.userName){
+        if (token){
             try{
             const resp = await axios.get('http://localhost:8080/api/operationsbytype?operationType=expense',
             {headers: {Authorization: 'Bearer ' + token}}
             )
-                setExpenses(resp.data)  
+            setExpenses(resp.data)  
             }
             catch(error){
-                //localStorage.removeItem('Token') 
-                message.error("Session expired. Please Login to continue operating", 4, GoToMain)
                 throw error        
             } 
         } 
         else {
-            //console.log("decoded:", decoded)
-            //if (decoded)
             message.error('Please Login to access this information. Redirecting to Login Page...',2, GoToMain)
-          }
         }
+    }
 
-        useEffect(() =>{
-            getAllExpenses()
-        },[]
-        )
+    useEffect(() =>{
+        getAllExpenses()
+    },[]
+    )
 
-        const [operationVisible, setModal] = useState(false)
-        const [ operationDetails, setOperationDetails]  = useState({})
+    const [operationVisible, setModal] = useState(false)
+    const [ operationDetails, setOperationDetails]  = useState({})
 
-        const handleOnDelete = (event) => {
-            setOperationDetails (event)
-            setIsModalVisible(true)
-        } 
+    const handleOnDelete = (event) => {
+        setOperationDetails (event)
+        setIsModalVisible(true)
+    } 
 
-        const [ isEditModalVisible, setIsEditModalVisible] = useState(false);
-        const [ operationEditDetails, setOperationEditDetails]  = useState({})
+    const [ isEditModalVisible, setIsEditModalVisible] = useState(false);
+    const [ operationEditDetails, setOperationEditDetails]  = useState({})
 
-        const handleOnEdit = (row) => {
-            setOperationEditDetails (row)
-            setIsEditModalVisible(true)
-        } 
+    const handleOnEdit = (row) => {
+        setOperationEditDetails (row)
+        setIsEditModalVisible(true)
+    } 
 
-        
-
-const columns =[
+    const columns =[
     {
         title:"Concept",
         dataIndex:"concept",
@@ -128,6 +118,5 @@ const columns =[
             return null
         }
     }
-    
     
 export default Expenses;

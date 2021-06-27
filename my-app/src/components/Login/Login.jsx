@@ -33,7 +33,6 @@ const Login = () => {
     setUserModalVisible(true)
   }
 
-
   const onFinish = async(values) => {
      console.log('Success:', values);
      const userObject = 
@@ -43,14 +42,14 @@ const Login = () => {
        }
 
      try{
-     const response = await axios.post('http://localhost:8080/api/users/login/', userObject );
-     localStorage.setItem("Token", response.data.token) 
-     message.success('Welcome to AccountANT',goToHome)
-     } catch(err){
+        const response = await axios.post('http://localhost:8080/api/users/login/', userObject );
+        localStorage.setItem("Token", response.data.token) 
+        message.success('Welcome to AccountANT',goToHome)
+     } 
+     catch(err){
        message.error('Login error. Check username and password entered',5)
      }
-   
-   }
+  }
  
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -61,62 +60,62 @@ const Login = () => {
     <div>
       <br></br>
     <Space>
-    
-    <Form
-      {...layout}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'This field is required. Please input your username!',
-          },
-        ]}
+      <Form
+        {...layout}
+        name="basic"
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
       >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: 'This field is required. Please input your username!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your password!',
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
 
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
+        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
       <div> 
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-      <Form.Item {...tailLayout}>
-        <Button type="primary" onClick={ openUserModal}>
-          Create User
-        </Button>
-        <MyPostUserModal 
-        userModalVisible={userModalVisible} 
-        setUserModalVisible={setUserModalVisible} 
-      />
-      </Form.Item>
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+        <Form.Item {...tailLayout}>
+          <Button type="primary" onClick={ openUserModal}>
+            Create User
+          </Button>
+          <MyPostUserModal 
+          userModalVisible={userModalVisible} 
+          setUserModalVisible={setUserModalVisible} 
+        />
+        </Form.Item>
       </div>
-    </Form>
+      </Form>
     </Space>
     </div>
   )} 

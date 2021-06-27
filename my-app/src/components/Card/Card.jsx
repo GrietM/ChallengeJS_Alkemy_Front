@@ -9,14 +9,12 @@ const MyCard = () => {
         let decoded = jwt.verify(token, 'AlkemyChallengeJS')
         return decoded.userName
     }
-
-
-    return (
+  
+return (
   <>
     <Card title="Already logged in as:" style={{ width: 300 }}>
         {CardContent()}
-    </Card>
-    
+    </Card> 
   </>
     )
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Modal , Button, Form , Input, message, Col , Row, DatePicker, Select} from 'antd'
 import axios from 'axios'
-//import Password from 'antd/lib/input/Password'
 
 const jwt = require ('jsonwebtoken');
 
@@ -11,7 +10,6 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
     
     const token = localStorage.getItem('Token')
     const decoded = jwt.verify(token, 'AlkemyChallengeJS')
-
     const [formedit] = Form.useForm()
    
     const closeOperationModal = ()=>{
@@ -24,7 +22,8 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
             await axios.post('http://localhost:8080/api/operations/', newoperation,{headers: {Authorization: 'Bearer ' + token}});
             message.success("Operation succesfully created")
             closeOperationModal()
-        } catch (error) {
+        } 
+        catch (error) {
             message.error("Failed to create operation. Clear your entries and check fields requirements shown in red")
             throw error
         }
@@ -36,18 +35,16 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
     const formFailed =(error) =>{
         message.error("Failed to create operation. Clear your entries and check fields requirements shown in red")
     } 
-
     const handleCancel = ()=>{
         closeOperationModal()
     }
-
 
     const formview={
         labelCol:{ span:4}, 
         wrapperCol:{span:20},
       }
 
-      const dateFormat = 'YYYY/MM/DD';
+    const dateFormat = 'YYYY/MM/DD';
 
     return (
     <div>
@@ -56,7 +53,6 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
         width={700}
         footer={null}
         onCancel={closeOperationModal}
-
       >
         <Row>
             <Col xs={4} sm={4} md={2} lg={2}></Col>
@@ -68,7 +64,7 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
             form={formedit}
             {...formview}
         >
-             <Item label="Concept" 
+            <Item label="Concept" 
                 name="concept" 
                 rules={[{ required: true, message: 'Insert Concept (max:20)' , max:20 }]}
                 
@@ -80,7 +76,7 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
                 rules={[{ required: true, message: 'Insert amount (only numeric values accepted)'}]}
                 
             >
-                <Input  />
+               <Input  />
             </Item>
             <Item label="Date" name="date">
                 <DatePicker format={dateFormat}/>
@@ -98,8 +94,7 @@ const MyPostModal = ({operationVisible, setOperationVisible , getAllOperations})
                 <Button type="primary" htmlType="submit">Guardar</Button>
                 &nbsp;&nbsp;&nbsp;
                 <Button htmlType="button" onClick={handleCancel}>Cancelar</Button>
-            </Item>
-            
+            </Item>      
         </Form>
       </Col>
       </Row>
